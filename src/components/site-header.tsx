@@ -35,8 +35,8 @@ export function SiteHeader() {
             A
           </span>
           <span className="leading-tight">
-            <span className="block font-display text-xl font-bold text-primary sm:text-2xl">
-              ArsMedica Centrum
+            <span className="block font-display text-xl font-bold tracking-wide text-primary sm:text-2xl">
+              ARSMEDICA CENTRUM
             </span>
             <span className="block text-sm text-muted-foreground">Przychodnia POZ w Kaliszu</span>
           </span>
