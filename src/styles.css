@@ -46,42 +46,74 @@
 :root {
   --radius: 0.75rem;
 
-  /* Soft warm paper (not stark white): gentler on older eyes, flatters the red. */
-  --background: oklch(0.986 0.007 75);
+  /* Shared, theme-independent tokens. Text ink stays a near-neutral warm dark
+     so it reads cleanly on every off-white below; neutrals are kept genuinely
+     neutral so they never become an accidental second accent. */
   --foreground: oklch(0.245 0.012 40);
-  --card: oklch(1 0 0);
+  --card: #ffffff;
   --card-foreground: oklch(0.245 0.012 40);
-  --popover: oklch(1 0 0);
+  --popover: #ffffff;
   --popover-foreground: oklch(0.245 0.012 40);
-
-  /* ARSMEDICA red — the practice's brand red, brightened and cleaned so it
-     reads confident and welcoming rather than bloody. (The previous house red
-     sat darker and more crimson; this lifts lightness and pushes the hue back
-     toward a true, arterial red.) Passes AA on white text for the top bar. */
-  --primary: oklch(0.535 0.208 27);
-  --primary-foreground: oklch(0.99 0.005 95);
-  --primary-soft: oklch(0.955 0.03 25);
-
-  --secondary: oklch(0.955 0.016 80);
+  --primary-foreground: #ffffff;
   --secondary-foreground: oklch(0.3 0.02 40);
-  --muted: oklch(0.955 0.012 80);
-  --muted-foreground: oklch(0.455 0.015 55);
+  --muted: oklch(0.965 0.008 55);
+  --muted-foreground: oklch(0.455 0.014 45);
+  --accent-foreground: #ffffff;
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
+  --border: oklch(0.9 0.008 60);
+  --input: oklch(0.9 0.008 60);
 
-  /* Muted medical green — the practice's real secondary colour. Used sparingly
-     (service icons, the private-specialist call-to-action) to complement, not
-     compete with, the red. */
-  --accent: oklch(0.515 0.1 152);
-  --accent-foreground: oklch(0.99 0.005 95);
-
-  --destructive: oklch(0.52 0.2 27);
-  --destructive-foreground: oklch(0.99 0.005 95);
-
-  --border: oklch(0.9 0.01 75);
-  --input: oklch(0.9 0.01 75);
-  --ring: oklch(0.535 0.208 27);
+  /* Per-theme colour tokens. Default = "czerwien"; the :root[data-colorway="…"]
+     blocks below swap these six for each light theme. Every accent is a DEEPER
+     tone of its own primary — never a contrasting hue — so nothing clashes.
+     Backgrounds are subtly tinted off-whites (never pure white, never dirty). */
+  --background: #FBF7F6;
+  --secondary: #F6EEEC;
+  --primary: #B03A34;
+  --primary-soft: #F6E7E4;
+  --accent: #8C2C27;
+  --ring: #B03A34;
 
   --shadow-card: 0 1px 2px oklch(0.28 0.02 30 / 0.06), 0 8px 24px -12px oklch(0.28 0.02 30 / 0.18);
   --shadow-lift: 0 4px 8px oklch(0.28 0.02 30 / 0.08), 0 18px 40px -18px oklch(0.28 0.02 30 / 0.28);
+}
+
+/* =========================================================================
+   Light colourways — pick with the on-page colour picker (sets data-colorway).
+   Palettes grounded in real health-system brand colour (NHS, Mayo, HSE, Bupa
+   family); every primary passes WCAG AA on white; every accent is a deeper
+   shade of the SAME hue; every background is a distinct, subtle off-white.
+   ========================================================================= */
+:root[data-colorway="czerwien"] { /* calm clay red */
+  --background:#FBF7F6; --secondary:#F6EEEC; --primary:#B03A34; --primary-soft:#F6E7E4; --accent:#8C2C27; --ring:#B03A34;
+}
+:root[data-colorway="zielen"] { /* medical forest green */
+  --background:#F5FAF7; --secondary:#E9F3EC; --primary:#276749; --primary-soft:#E6F0EA; --accent:#1E4D36; --ring:#276749;
+}
+:root[data-colorway="blekit"] { /* clinical sky blue */
+  --background:#F5F9FC; --secondary:#E9F1F8; --primary:#0F6FB4; --primary-soft:#E4F0F8; --accent:#0A5590; --ring:#0F6FB4;
+}
+:root[data-colorway="granat"] { /* deep navy */
+  --background:#F5F8FB; --secondary:#E9EFF6; --primary:#1E3A5F; --primary-soft:#E7ECF3; --accent:#14284A; --ring:#1E3A5F;
+}
+:root[data-colorway="morski"] { /* sea teal */
+  --background:#F4FAFA; --secondary:#E5F2F2; --primary:#0F757B; --primary-soft:#E2F1F1; --accent:#0B5A5F; --ring:#0F757B;
+}
+:root[data-colorway="szmaragd"] { /* emerald */
+  --background:#F5FBF8; --secondary:#E7F4EE; --primary:#0F7A53; --primary-soft:#E4F3EC; --accent:#0A5A3F; --ring:#0F7A53;
+}
+:root[data-colorway="bordo"] { /* burgundy / wine */
+  --background:#FAF6F7; --secondary:#F3EAED; --primary:#7C2D3A; --primary-soft:#F2E6E9; --accent:#5C2029; --ring:#7C2D3A;
+}
+:root[data-colorway="grafit"] { /* graphite near-neutral */
+  --background:#F7F8F9; --secondary:#ECEEF1; --primary:#3A424B; --primary-soft:#ECEEF0; --accent:#262C32; --ring:#3A424B;
+}
+:root[data-colorway="stal"] { /* steel / slate blue */
+  --background:#F6F8FA; --secondary:#E9EEF3; --primary:#43607A; --primary-soft:#EAEFF3; --accent:#2F4759; --ring:#43607A;
+}
+:root[data-colorway="bursztyn"] { /* warm amber / ochre */
+  --background:#FBF7EF; --secondary:#F3ECDC; --primary:#966516; --primary-soft:#F7EDDC; --accent:#6E4A12; --ring:#966516;
 }
 
 @layer base {

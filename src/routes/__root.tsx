@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ColorwaySwitcher } from "@/components/colorway-switcher";
 
 
 function NotFoundComponent() {
@@ -110,9 +111,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="pl">
+    <html lang="pl" data-colorway="czerwien">
       <head>
         <HeadContent />
+        {/* Apply the saved colour theme before first paint to avoid a flash. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('arsmedica.colorway');if(t)document.documentElement.setAttribute('data-colorway',t);}catch(e){}",
+          }}
+        />
       </head>
       <body>
         {children}
@@ -134,6 +142,7 @@ function RootComponent() {
           <Outlet />
         </main>
         <SiteFooter />
+        <ColorwaySwitcher />
       </div>
     </QueryClientProvider>
   );
