@@ -1,0 +1,162 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * ArsMedica Centrum — design system.
+ * The practice's real identity: white + red + a muted medical green + warm grey.
+ * Large, readable type for senior patients on soft warm paper.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Merriweather", Georgia, serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --shadow-card: var(--shadow-card);
+  --shadow-lift: var(--shadow-lift);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Soft warm paper (not stark white): gentler on older eyes, flatters the red. */
+  --background: oklch(0.986 0.007 75);
+  --foreground: oklch(0.245 0.012 40);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.245 0.012 40);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.245 0.012 40);
+
+  /* ARSMEDICA red — the practice's brand red, brightened and cleaned so it
+     reads confident and welcoming rather than bloody. (The previous house red
+     sat darker and more crimson; this lifts lightness and pushes the hue back
+     toward a true, arterial red.) Passes AA on white text for the top bar. */
+  --primary: oklch(0.535 0.208 27);
+  --primary-foreground: oklch(0.99 0.005 95);
+  --primary-soft: oklch(0.955 0.03 25);
+
+  --secondary: oklch(0.955 0.016 80);
+  --secondary-foreground: oklch(0.3 0.02 40);
+  --muted: oklch(0.955 0.012 80);
+  --muted-foreground: oklch(0.455 0.015 55);
+
+  /* Muted medical green — the practice's real secondary colour. Used sparingly
+     (service icons, the private-specialist call-to-action) to complement, not
+     compete with, the red. */
+  --accent: oklch(0.515 0.1 152);
+  --accent-foreground: oklch(0.99 0.005 95);
+
+  --destructive: oklch(0.52 0.2 27);
+  --destructive-foreground: oklch(0.99 0.005 95);
+
+  --border: oklch(0.9 0.01 75);
+  --input: oklch(0.9 0.01 75);
+  --ring: oklch(0.535 0.208 27);
+
+  --shadow-card: 0 1px 2px oklch(0.28 0.02 30 / 0.06), 0 8px 24px -12px oklch(0.28 0.02 30 / 0.18);
+  --shadow-lift: 0 4px 8px oklch(0.28 0.02 30 / 0.08), 0 18px 40px -18px oklch(0.28 0.02 30 / 0.28);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+@utility surface-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+
+@utility btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: var(--radius-lg);
+  padding: 0.9rem 1.6rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: all 0.18s ease;
+}
+
+@utility btn-primary {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  &:hover {
+    background: color-mix(in oklab, var(--color-primary) 88%, black);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@utility btn-accent {
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  &:hover {
+    background: color-mix(in oklab, var(--color-accent) 88%, black);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@utility btn-outline {
+  background: var(--color-card);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  &:hover {
+    background: var(--color-primary-soft);
+  }
+}
