@@ -64,7 +64,8 @@ function ContactPage() {
 
           <p className="mt-6 text-lg text-muted-foreground">
             Po godzinie 18:00 oraz w dni świąteczne opiekę zapewnia Wojewódzki Szpital Zespolony w
-            Kaliszu, ul. Poznańska 79 (budynek Pogotowia). W stanie zagrożenia życia dzwoń 112.
+            Kaliszu, ul. Poznańska 79 (budynek Pogotowia), tel. 62 765 16 54. Nocna i świąteczna
+            pomoc: Teleplatforma Pierwszego Kontaktu (TPK) 800 137 200.
           </p>
         </div>
 

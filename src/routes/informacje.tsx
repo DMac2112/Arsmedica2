@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { clinic } from "@/data/clinic";
 
 export const Route = createFileRoute("/informacje")({
   component: InfoPage,
@@ -27,33 +26,33 @@ const sections = [
   {
     title: "Programy profilaktyczne",
     body: [
-      "Program profilaktyki chorób układu krążenia (CHUK) – dla osób dorosłych obciążonych ryzykiem zawału i udaru. Obejmuje badania krwi, pomiar ciśnienia i rozmowę z lekarzem.",
-      "„Moje Zdrowie – bilans zdrowia osoby dorosłej” – przegląd stanu zdrowia z zestawem badań oraz indywidualnym planem dalszego postępowania.",
+      "Program profilaktyki chorób układu krążenia (CHUK) – dla osób dorosłych. Umożliwia ocenę stanu zdrowia, identyfikację czynników ryzyka oraz wczesne wykrywanie chorób.",
+      "„Moje Zdrowie – bilans zdrowia osoby dorosłej”.",
     ],
   },
   {
     title: "Opieka koordynowana",
     body: [
-      "Prowadzimy pacjentów z chorobami przewlekłymi (kardiologicznymi, diabetologicznymi, tarczycy i płuc) w ramach opieki koordynowanej. Diagnostyka, konsultacje i porady edukacyjne odbywają się według wspólnie ustalonego planu leczenia.",
-      "Zapytaj o udział w rejestracji, u swojego lekarza lub pielęgniarki.",
+      "Zapraszamy do korzystania ze świadczeń realizowanych w ramach opieki koordynowanej. Pozwala ona lepiej zaplanować diagnostykę i leczenie chorób przewlekłych oraz zapewnia pacjentowi bardziej kompleksową opiekę zespołu medycznego.",
+      "Zapytaj o udział w rejestracji lub u swojego lekarza.",
     ],
   },
   {
     title: "Laboratorium i punkt pobrań",
     body: [
-      "Krew pobieramy codziennie od poniedziałku do piątku w godzinach 7:30 – 11:00. Na badania prosimy zgłaszać się na czczo, ze skierowaniem od lekarza i dokumentem tożsamości.",
+      "Krew pobieramy od poniedziałku do piątku w godzinach 7:30 – 11:00. Istnieje możliwość wykonania badań płatnych. Odbiór wyników następnego dnia od godziny 14:00.",
     ],
   },
   {
     title: "Recepty na leki stałe",
     body: [
-      `Receptę na stale przyjmowane leki zamówisz telefonicznie pod numerem ${clinic.phone} lub ${clinic.mobile}. Kod e-recepty otrzymasz SMS-em – nie trzeba przychodzić do przychodni.`,
+      "Zamówioną e-receptę na leki stałe zrealizujesz w dowolnej aptece na podstawie kodu otrzymanego SMS-em – nie trzeba przychodzić do przychodni.",
     ],
   },
   {
     title: "Szczepienia",
     body: [
-      "Realizujemy szczepienia obowiązkowe według kalendarza szczepień oraz szczepienia zalecane, w tym przeciw krztuścowi, WZW, pneumokokom i rotawirusom.",
+      "Realizujemy szczepienia zalecane, w tym przeciw krztuścowi, WZW, pneumokokom i rotawirusom.",
       "Szczepienie przeciw krztuścowi polecamy szczególnie osobom mającym kontakt z noworodkami i niemowlętami, kobietom w ciąży oraz dorosłym przyjmującym dawkę przypominającą co 10 lat.",
     ],
   },
@@ -67,7 +66,7 @@ const sections = [
     title: "Prawa i obowiązki pacjenta, RODO",
     body: [
       "Pacjent ma prawo do świadczeń zdrowotnych odpowiadających wymaganiom wiedzy medycznej, do informacji o swoim stanie zdrowia, do dokumentacji medycznej oraz do ochrony danych osobowych.",
-      "Pełna treść klauzuli informacyjnej RODO oraz karta praw pacjenta dostępne są w rejestracji przychodni.",
+      "Pełna treść klauzuli informacyjnej RODO oraz karta praw i obowiązków pacjenta dostępne są w przychodni.",
     ],
   },
 ];

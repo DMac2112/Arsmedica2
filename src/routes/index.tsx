@@ -62,13 +62,13 @@ const quickLinks = [
   {
     icon: CalendarCheck,
     title: "Umów wizytę",
-    text: "Zadzwoń do rejestracji lub przyjdź osobiście. Pomożemy wybrać dogodny termin.",
+    text: "Rejestracja telefoniczna lub osobista, od poniedziałku do piątku w godzinach 8:00–18:00.",
     action: { label: `Zadzwoń ${clinic.phone}`, href: `tel:${clinic.phoneHref}` },
   },
   {
     icon: Pill,
     title: "Zamów receptę",
-    text: "Recepty na leki stałe zamówisz telefonicznie – odbiór e-recepty SMS-em.",
+    text: "Kod e-recepty na leki stałe otrzymasz SMS-em i zrealizujesz go w dowolnej aptece.",
     action: { label: `Zadzwoń ${clinic.mobile}`, href: `tel:${clinic.mobileHref}` },
   },
   {
@@ -87,13 +87,13 @@ const services = [
   },
   {
     icon: FlaskConical,
-    title: "Laboratorium i USG",
-    text: "Pobieranie krwi codziennie od 7:30 do 11:00. Badania obrazowe i diagnostyka na miejscu.",
+    title: "Laboratorium",
+    text: "Pobieranie krwi od poniedziałku do piątku od 7:30 do 11:00. Odbiór wyników następnego dnia od 14:00.",
   },
   {
     icon: Syringe,
     title: "Szczepienia",
-    text: "Szczepienia obowiązkowe i zalecane, w tym przeciw krztuścowi, WZW, pneumokokom i rotawirusom.",
+    text: "Szczepienia zalecane, w tym przeciw krztuścowi, WZW, pneumokokom i rotawirusom.",
   },
   {
     icon: Activity,
@@ -103,7 +103,7 @@ const services = [
   {
     icon: ClipboardList,
     title: "Opieka koordynowana",
-    text: "Kompleksowe prowadzenie chorób przewlekłych: serca, cukrzycy, tarczycy i płuc.",
+    text: "Lepsze planowanie diagnostyki i leczenia chorób przewlekłych oraz kompleksowa opieka zespołu medycznego.",
   },
   {
     icon: Stethoscope,
@@ -122,11 +122,10 @@ function Home() {
               <MapPin className="size-5" aria-hidden="true" /> Kalisz, ul. Babina 3
             </p>
             <h1 className="mt-6 text-4xl font-bold leading-tight text-primary sm:text-5xl">
-              Przychodnia rodzinna, w której czuje się Pan/Pani zaopiekowany
+              Zadbaj o zdrowie – skorzystaj z profilaktyki i opieki koordynowanej
             </h1>
             <p className="mt-5 max-w-xl text-xl text-foreground/90">
-              Leczymy w ramach NFZ od poniedziałku do piątku w godzinach 8:00–18:00. Bez kolejek
-              telefonicznych – wystarczy jeden telefon do rejestracji.
+              Leczymy w ramach NFZ od poniedziałku do piątku w godzinach 8:00–18:00.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a href={`tel:${clinic.phoneHref}`} className="btn-base btn-primary text-xl">
@@ -195,18 +194,17 @@ function Home() {
           className="w-full rounded-2xl border border-border object-cover shadow-card"
         />
         <div>
-          <h2 className="text-3xl font-bold sm:text-4xl">Zadbaj o zdrowie – programy profilaktyczne</h2>
+          <h2 className="text-3xl font-bold sm:text-4xl">Programy profilaktyczne</h2>
           <p className="mt-4 text-xl">
-            Zapraszamy do bezpłatnych programów realizowanych w naszej przychodni:
+            Zapraszamy do bezpłatnych programów realizowanych w naszej przychodni. Umożliwiają one
+            ocenę stanu zdrowia, identyfikację czynników ryzyka oraz wczesne wykrywanie chorób:
           </p>
           <ul className="mt-5 space-y-4 text-lg">
             <li className="surface-card p-5">
-              <strong>Profilaktyka chorób układu krążenia (CHUK)</strong> – ocena ryzyka zawału i
-              udaru wraz z badaniami krwi.
+              <strong>Profilaktyka chorób układu krążenia (CHUK)</strong>
             </li>
             <li className="surface-card p-5">
-              <strong>„Moje Zdrowie” – bilans zdrowia osoby dorosłej</strong> – pełny przegląd stanu
-              zdrowia i plan działania z lekarzem.
+              <strong>„Moje Zdrowie” – bilans zdrowia osoby dorosłej</strong>
             </li>
           </ul>
           <p className="mt-5 text-lg text-muted-foreground">
@@ -224,7 +222,8 @@ function Home() {
           <h2 className="text-3xl font-bold">Po godzinie 18:00 i w dni świąteczne</h2>
           <p className="max-w-2xl text-xl">
             Opiekę medyczną świadczy Wojewódzki Szpital Zespolony w Kaliszu, ul. Poznańska 79
-            (budynek Pogotowia). W sytuacji zagrożenia życia dzwoń pod numer 112 lub 999.
+            (budynek Pogotowia), tel. 62 765 16 54. Nocną i świąteczną pomoc uzyskasz też przez
+            Teleplatformę Pierwszego Kontaktu (TPK): 800 137 200.
           </p>
         </div>
       </section>
