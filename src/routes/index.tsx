@@ -142,9 +142,9 @@ function Home() {
 
           <img
             src={heroImage}
-            alt="Lekarka rodzinna rozmawia ze starszą pacjentką w gabinecie przychodni"
-            width={1600}
-            height={1104}
+            alt="Budynek przychodni ARSMEDICA przy ul. Babina 3 w Kaliszu"
+            width={800}
+            height={450}
             className="w-full rounded-2xl border border-border object-cover shadow-lift"
           />
         </div>
@@ -187,10 +187,10 @@ function Home() {
       <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-2">
         <img
           src={receptionImage}
-          alt="Recepcja przychodni ArsMedica Centrum"
+          alt="Rejestracja przychodni ARSMEDICA CENTRUM z nazwą placówki na szklanej przegrodzie"
           loading="lazy"
-          width={1200}
-          height={900}
+          width={800}
+          height={449}
           className="w-full rounded-2xl border border-border object-cover shadow-card"
         />
         <div>
