@@ -193,10 +193,15 @@ function Home() {
         </div>
         <aside className="after-hours">
           <h3>Po godzinach i w dni świąteczne</h3>
-          <p>Wojewódzki Szpital Zespolony w Kaliszu, ul. Poznańska 79 (budynek Pogotowia).</p>
+          <p>Opieka nocna i świąteczna: Wojewódzki Szpital Zespolony w Kaliszu, ul. Poznańska 79.</p>
           <a className="text-link" href={`tel:${clinic.afterHoursPhoneHref}`}>
             {clinic.afterHoursPhone}
           </a>
+          <h3>Teleplatforma Pierwszego Kontaktu (TPK)</h3>
+          <a className="text-link" href={`tel:${clinic.tpkPhoneHref}`}>
+            Bezpłatny numer: {clinic.tpkPhone}
+          </a>
+          <p>{clinic.tpkHours}</p>
         </aside>
       </section>
 

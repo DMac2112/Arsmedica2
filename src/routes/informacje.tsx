@@ -43,18 +43,32 @@ function InfoPage() {
       <section id="recepty" className="patient-section">
         <h2>E-recepta na leki stałe</h2>
         <p>
-          Na stronie przychodni opisano zamawianie recept na leki stosowane w leczeniu chorób
-          przewlekłych. Kod recepty pacjent otrzymuje SMS-em.
+          Pacjenci ARSMEDICA mogą zamówić przez stronę przychodni receptę na przepisane przez
+          lekarza leki stosowane w leczeniu chorób przewlekłych. Kod recepty otrzymasz SMS-em;
+          receptę można zrealizować w dowolnej aptece.
         </p>
+        <h3>Co przygotować do zamówienia?</h3>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>Imię i nazwisko, PESEL i aktualny telefon. Przychodnia prosi też o aktualny e-mail.</li>
+          <li>
+            Nazwę i formę leku, ilość substancji czynnej, ilość leku w opakowaniu oraz liczbę
+            opakowań (formularz pozwala wybrać od 1 do 5).
+          </li>
+          <li>Wnioskowany termin odbioru recepty.</li>
+          <li>
+            Oświadczenie, że obecnie nie przebywasz w szpitalu, sanatorium, na rehabilitacji
+            dziennej ani w zakładzie opiekuńczo-leczniczym.
+          </li>
+          <li>Zgodę na przetwarzanie danych z formularza w celu realizacji e-recepty.</li>
+        </ul>
         <div className="staff-note">
-          <strong>Podgląd — tutaj nie zamówisz recepty.</strong>
+          <strong>Zamówienie składa się na stronie przychodni.</strong>
           <p>
-            Ta wersja strony nie przyjmuje zamówień ani danych pacjenta. Zapytaj w rejestracji o
-            aktualny sposób zamówienia.
+            Przycisk poniżej otwiera istniejący formularz ARSMEDICA. Dane wpisz bezpośrednio tam.
           </p>
         </div>
-        <a href={`tel:${clinic.phoneHref}`} className="btn-base btn-primary">
-          Zapytaj o e-receptę: {clinic.phone}
+        <a href="https://e-arsmedica.pl/zamow-recepte" className="btn-base btn-primary">
+          Otwórz formularz e-recepty przychodni
         </a>
       </section>
       <section id="nfz" className="patient-section border-t-2 border-border">
@@ -131,6 +145,12 @@ function InfoPage() {
           Przychodnia otrzymała grant 448 959,87 zł na wyposażenie medyczne, diagnostyczne i
           informatyczne. Projekt jest dofinansowany z Europejskiego Funduszu Rozwoju Regionalnego, w
           ramach programu FEnIKS 2021–2027.
+        </p>
+        <p>
+          Z grantu zakupiono spirometr, aparat EKG, rejestratory Holter EKG i Holter ciśnieniowy,
+          aparat ultrasonograficzny oraz mobilne aparaty USG. Zakupiono też urządzenia do szybkiej
+          diagnostyki laboratoryjnej. O dostępność konkretnego badania i warunki jego wykonania
+          zapytaj lekarza POZ.
         </p>
         <p className="confirmation">
           do potwierdzenia przed publikacją: komplet wymaganych oznaczeń projektu.

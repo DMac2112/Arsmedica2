@@ -10,7 +10,7 @@ export const Route = createFileRoute("/kontakt")({
       {
         name: "description",
         content:
-          "Przychodnia ArsMedica Centrum, ul. Babina 3, 62-800 Kalisz. Rejestracja tel. 62 580 22 52, kom. 573 335 284, pon.–pt. 8:00–18:00. Mapa dojazdu.",
+          "Przychodnia ArsMedica Centrum, ul. Babina 3, 62-800 Kalisz. Rejestracja tel. 62 580 22 52, kom. 573 335 284. Kontakt, pomoc po godzinach i mapa dojazdu.",
       },
       { property: "og:title", content: "Kontakt i dojazd – ArsMedica Centrum Kalisz" },
       {
@@ -45,7 +45,7 @@ function ContactPage() {
           </p>
 
           <p className="mt-5 flex items-center gap-3 text-xl">
-            <Clock className="size-6 text-primary" aria-hidden="true" /> {clinic.hours}
+            <Clock className="size-6 text-primary" aria-hidden="true" /> POZ: {clinic.hours}
           </p>
 
           <div className="mt-8 space-y-3">
@@ -59,19 +59,23 @@ function ContactPage() {
               href={`tel:${clinic.specialistPhoneHref}`}
               className="btn-base btn-outline w-full text-xl"
             >
-              <Phone className="size-6" aria-hidden="true" /> Specjaliści: {clinic.specialistPhone}
+              <Phone className="size-6" aria-hidden="true" /> Rejestracja centralna: {clinic.specialistPhone}
             </a>
           </div>
 
           <div className="mt-6 text-lg">
             <h2 className="text-2xl font-bold">Pomoc po godzinach</h2>
             <p>
-              Po 18:00 i w dni świąteczne: Wojewódzki Szpital Zespolony w Kaliszu, ul. Poznańska 79
-              (budynek Pogotowia).
+              Opieka nocna i świąteczna: Wojewódzki Szpital Zespolony w Kaliszu, ul. Poznańska 79.
             </p>
             <a className="text-link" href={`tel:${clinic.afterHoursPhoneHref}`}>
               {clinic.afterHoursPhone}
             </a>
+            <h3 className="mt-4 text-xl font-bold">Teleplatforma Pierwszego Kontaktu (TPK)</h3>
+            <a className="text-link" href={`tel:${clinic.tpkPhoneHref}`}>
+              Bezpłatny numer: {clinic.tpkPhone}
+            </a>
+            <p>{clinic.tpkHours}</p>
           </div>
         </div>
 

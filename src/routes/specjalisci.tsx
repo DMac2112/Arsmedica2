@@ -10,7 +10,7 @@ export const Route = createFileRoute("/specjalisci")({
       {
         name: "description",
         content:
-          "Kardiolog, neurolog, ortopeda, psychiatra, fizjoterapia i masaż w Kaliszu przy ul. Babina 3. Rejestracja pon.–pt. 8:00–16:00, tel. 500 308 305.",
+          "Prywatni specjaliści w Kaliszu przy ul. Babina 3. Numery rejestracji i godziny przyjęć podano przy każdej poradni.",
       },
       { property: "og:title", content: "Prywatne gabinety specjalistyczne – ArsMedica Kalisz" },
       {
@@ -32,9 +32,10 @@ function SpecialistsPage() {
         Prywatne gabinety specjalistyczne
       </h1>
       <p className="mt-4 max-w-3xl text-xl">
-        Do większości specjalistów rejestracja odbywa się od poniedziałku do piątku w godzinach
-        8:00–16:00 pod numerem <strong>{clinic.specialistPhone}</strong>. Przy pozostałych podajemy
-        numer bezpośredni.
+        Rejestracja centralna pod numerem <strong>{clinic.specialistPhone}</strong> działa od
+        poniedziałku do piątku, 8:00–16:00. Obsługuje ortopedę, neurologa, kardiologa, pulmonologa
+        oraz lekarza medycyny pracy i transportu. Do pozostałych specjalistów dzwoń pod numer
+        podany przy poradni; źródło nie określa ich godzin rejestracji.
       </p>
       <a href={`tel:${clinic.specialistPhoneHref}`} className="btn-base btn-accent mt-6">
         <Phone className="size-5" aria-hidden="true" /> Zadzwoń {clinic.specialistPhone}

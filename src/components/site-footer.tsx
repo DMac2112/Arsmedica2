@@ -41,8 +41,9 @@ export function SiteFooter() {
           </p>
           <p className="mt-2 flex items-center gap-3">
             <Clock className="size-5 text-primary" aria-hidden="true" />
-            {clinic.hours}
+            POZ: {clinic.hours}
           </p>
+          <p className="confirmation mt-2">{clinic.hoursNote}</p>
         </div>
 
         <div>

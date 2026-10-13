@@ -14,6 +14,10 @@ export const clinic = {
     "do potwierdzenia: oferta POZ podaje 8:00–18:00, stopka 7:30–18:00. Osobnych godzin rejestracji nie opublikowano.",
   afterHoursPhone: "62 765 16 54",
   afterHoursPhoneHref: "+48627651654",
+  tpkPhone: "800 137 200",
+  tpkPhoneHref: "800137200",
+  tpkHours:
+    "Według strony przychodni: poniedziałek – piątek 18:00–8:00 następnego dnia; w weekendy, święta i inne dni ustawowo wolne od pracy — całodobowo.",
 };
 
 export const pozDoctors = [
@@ -148,7 +152,7 @@ export const specialists = [
 // Źródła: audit/pages/oferta-poz.md, laboratorium.md, kalendarz-szczepien.md.
 export const openingHours = [
   {
-    name: "Rejestracja i POZ",
+    name: "POZ",
     days: "poniedziałek – piątek",
     time: "8:00–18:00",
     note: clinic.hoursNote,
@@ -167,10 +171,10 @@ export const openingHours = [
     note: "do potwierdzenia: terminy po piątku i świętach oraz sposób odbioru nie są opisane.",
   },
   {
-    name: "Rejestracja do specjalistów",
+    name: "Rejestracja centralna do specjalistów",
     days: "poniedziałek – piątek",
     time: "8:00–16:00",
-    note: "",
+    note: "Tel. 500 308 305 — ortopeda, neurolog, kardiolog, pulmonolog oraz lekarz medycyny pracy i transportu. Pozostali mają osobne numery.",
   },
 ];
 
@@ -201,7 +205,7 @@ export const vaccinations = [
   {
     name: "Krztusiec",
     vaccine:
-      "Informacja przychodni dotyczy osób mających kontakt z niemowlętami, kobiet w ciąży lub planujących ciążę oraz dawek przypominających u dorosłych.",
+      "Informacja przychodni dotyczy osób mających kontakt z niemowlętami, kobiet w ciąży lub planujących ciążę. U dorosłych źródło zaleca dawkę przypominającą co 10 lat.",
   },
 ];
 export const vaccinationNote =
