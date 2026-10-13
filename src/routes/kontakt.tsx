@@ -29,6 +29,7 @@ function ContactPage() {
     <div className="mx-auto max-w-6xl px-4 py-12">
       <h1 className="text-4xl font-bold text-primary sm:text-5xl">Kontakt i dojazd</h1>
 
+      <p className="confirmation mt-6">{clinic.hoursNote}</p>
       <div className="mt-10 grid gap-8 lg:grid-cols-2">
         <div className="surface-card p-8">
           <h2 className="font-display text-2xl font-bold">{clinic.name}</h2>
@@ -62,21 +63,32 @@ function ContactPage() {
             </a>
           </div>
 
-          <p className="mt-6 text-lg text-muted-foreground">
-            Po godzinie 18:00 oraz w dni świąteczne opiekę zapewnia Wojewódzki Szpital Zespolony w
-            Kaliszu, ul. Poznańska 79 (budynek Pogotowia), tel. 62 765 16 54. Nocna i świąteczna
-            pomoc: Teleplatforma Pierwszego Kontaktu (TPK) 800 137 200.
-          </p>
+          <div className="mt-6 text-lg">
+            <h2 className="text-2xl font-bold">Pomoc po godzinach</h2>
+            <p>
+              Po 18:00 i w dni świąteczne: Wojewódzki Szpital Zespolony w Kaliszu, ul. Poznańska 79
+              (budynek Pogotowia).
+            </p>
+            <a className="text-link" href={`tel:${clinic.afterHoursPhoneHref}`}>
+              {clinic.afterHoursPhone}
+            </a>
+          </div>
         </div>
 
-        <div className="surface-card overflow-hidden">
-          <iframe
-            title="Mapa dojazdu do przychodni ArsMedica Centrum, ul. Babina 3 w Kaliszu"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=18.075%2C51.755%2C18.105%2C51.775&layer=mapnik&marker=51.7655%2C18.0905"
-            className="h-full min-h-[420px] w-full border-0"
-            loading="lazy"
-          />
-        </div>
+        <section className="surface-card p-8">
+          <h2 className="text-2xl font-bold">Jak dojechać?</h2>
+          <p className="mt-4">Przychodnia znajduje się przy ul. Babina 3 w Kaliszu.</p>
+          <p className="confirmation mt-4">
+            do potwierdzenia: najbliższe przystanki, parking oraz dostępność wejścia nie są opisane
+            w źródłach. Zapytaj o dogodny dojazd w rejestracji.
+          </p>
+          <a
+            href="https://www.openstreetmap.org/search?query=Babina%203%2C%20Kalisz"
+            className="text-link"
+          >
+            Znajdź adres na mapie OpenStreetMap
+          </a>
+        </section>
       </div>
     </div>
   );

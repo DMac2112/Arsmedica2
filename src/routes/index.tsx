@@ -1,230 +1,220 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  Activity,
-  CalendarCheck,
-  ClipboardList,
-  Clock,
-  FlaskConical,
-  HeartPulse,
-  MapPin,
-  Phone,
-  Pill,
-  Stethoscope,
-  Syringe,
-} from "lucide-react";
+import { useEffect, useState } from "react";
+import { Phone } from "lucide-react";
 import heroImage from "@/assets/hero-clinic.jpg";
 import receptionImage from "@/assets/reception.jpg";
-import { clinic } from "@/data/clinic";
+import { clinic, openingHours, laboratory, vaccinations, vaccinationNote } from "@/data/clinic";
+import { DoctorSchedule } from "@/components/doctor-schedule";
 
 export const Route = createFileRoute("/")({
   component: Home,
   head: () => ({
     meta: [
-      { title: "ArsMedica Centrum Kalisz – przychodnia POZ, NFZ, specjaliści" },
+      { title: "ARSMEDICA CENTRUM Kalisz — godziny, lekarze, laboratorium i szczepienia" },
       {
         name: "description",
         content:
-          "Przychodnia rodzinna ArsMedica Centrum w Kaliszu, ul. Babina 3. Lekarze POZ w ramach NFZ, laboratorium, szczepienia i prywatne gabinety specjalistyczne. Rejestracja: 62 580 22 52.",
-      },
-      { property: "og:title", content: "ArsMedica Centrum – przychodnia rodzinna w Kaliszu" },
-      {
-        property: "og:description",
-        content:
-          "Opieka lekarza rodzinnego w ramach NFZ, badania laboratoryjne, szczepienia i specjaliści. ul. Babina 3, Kalisz.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "MedicalClinic",
-          name: "ARSMEDICA CENTRUM",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "ul. Babina 3",
-            postalCode: "62-800",
-            addressLocality: "Kalisz",
-            addressCountry: "PL",
-          },
-          telephone: "+48625802252",
-          openingHours: "Mo-Fr 08:00-18:00",
-        }),
+          "Godziny POZ, grafiki lekarzy, pobrania krwi i szczepienia. Kalisz, ul. Babina 3. Rejestracja: 62 580 22 52.",
       },
     ],
   }),
 });
 
-const quickLinks = [
-  {
-    icon: CalendarCheck,
-    title: "Umów wizytę",
-    text: "Rejestracja telefoniczna lub osobista, od poniedziałku do piątku w godzinach 8:00–18:00.",
-    action: { label: `Zadzwoń ${clinic.phone}`, href: `tel:${clinic.phoneHref}` },
-  },
-  {
-    icon: Pill,
-    title: "Zamów receptę",
-    text: "Kod e-recepty na leki stałe otrzymasz SMS-em i zrealizujesz go w dowolnej aptece.",
-    action: { label: `Zadzwoń ${clinic.mobile}`, href: `tel:${clinic.mobileHref}` },
-  },
-  {
-    icon: Stethoscope,
-    title: "Wizyta u specjalisty",
-    text: "Kardiolog, neurolog, ortopeda i inni – prywatnie, bez skierowania.",
-    action: { label: `Zadzwoń ${clinic.specialistPhone}`, href: `tel:${clinic.specialistPhoneHref}` },
-  },
-];
-
-const services = [
-  {
-    icon: HeartPulse,
-    title: "Podstawowa opieka zdrowotna",
-    text: "Lekarz rodzinny, internista i pediatra w ramach umowy z NFZ, od poniedziałku do piątku.",
-  },
-  {
-    icon: FlaskConical,
-    title: "Laboratorium",
-    text: "Pobieranie krwi od poniedziałku do piątku od 7:30 do 11:00. Odbiór wyników następnego dnia od 14:00.",
-  },
-  {
-    icon: Syringe,
-    title: "Szczepienia",
-    text: "Szczepienia zalecane, w tym przeciw krztuścowi, WZW, pneumokokom i rotawirusom.",
-  },
-  {
-    icon: Activity,
-    title: "Gabinet zabiegowy",
-    text: "Zastrzyki, opatrunki, EKG i pomiary – czynny w godzinach pracy przychodni.",
-  },
-  {
-    icon: ClipboardList,
-    title: "Opieka koordynowana",
-    text: "Lepsze planowanie diagnostyki i leczenia chorób przewlekłych oraz kompleksowa opieka zespołu medycznego.",
-  },
-  {
-    icon: Stethoscope,
-    title: "Sklep medyczny",
-    text: "Pon.–pt. 8:00–16:00. Realizujemy wnioski NFZ na środki pomocnicze i doradzamy w doborze.",
-  },
-];
+function TodayHours() {
+  const [today, setToday] = useState<string | null>(null);
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      const day = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Europe/Warsaw",
+        weekday: "short",
+      }).format(now);
+      const date = new Intl.DateTimeFormat("pl-PL", {
+        timeZone: "Europe/Warsaw",
+        day: "numeric",
+        month: "long",
+      }).format(now);
+      setToday(`${date}: ${day === "Sat" || day === "Sun" ? "POZ nieczynne" : "POZ 8:00–18:00"}`);
+    };
+    update();
+    const timer = window.setInterval(update, 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
+  return (
+    <>
+      <strong className="today-hours">
+        {today ? `Dziś, ${today}` : "POZ pon.–pt. 8:00–18:00"}
+      </strong>
+      <span className="regular-hours">Według stałego planu; z wyjątkiem świąt.</span>
+    </>
+  );
+}
 
 function Home() {
   return (
     <>
-      <section className="border-b border-border bg-primary-soft">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-2 lg:py-20">
+      <section id="godziny" className="hours-section content-width">
+        <div className="registration-panel">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-full bg-card px-4 py-2 text-base font-semibold text-primary shadow-card">
-              <MapPin className="size-5" aria-hidden="true" /> Kalisz, ul. Babina 3
-            </p>
-            <h1 className="mt-6 text-4xl font-bold leading-tight text-primary sm:text-5xl">
-              Zadbaj o zdrowie – skorzystaj z profilaktyki i opieki koordynowanej
-            </h1>
-            <p className="mt-5 max-w-xl text-xl text-foreground/90">
-              Leczymy w ramach NFZ od poniedziałku do piątku w godzinach 8:00–18:00.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a href={`tel:${clinic.phoneHref}`} className="btn-base btn-primary text-xl">
-                <Phone className="size-6" aria-hidden="true" /> {clinic.phone}
-              </a>
-              <Link to="/poz" className="btn-base btn-outline text-xl">
-                Godziny przyjęć lekarzy
-              </Link>
-            </div>
-            <p className="mt-6 flex items-center gap-2 text-lg text-muted-foreground">
-              <Clock className="size-5" aria-hidden="true" /> {clinic.hours}
-            </p>
+            <h1>Godziny i rejestracja</h1>
+            <TodayHours />
           </div>
-
-          <img
-            src={heroImage}
-            alt="Budynek przychodni ARSMEDICA przy ul. Babina 3 w Kaliszu"
-            width={800}
-            height={450}
-            className="w-full rounded-2xl border border-border object-cover shadow-lift"
-          />
+          <a href={`tel:${clinic.phoneHref}`} className="registration-phone">
+            <Phone aria-hidden="true" />
+            <span>
+              <span>Zadzwoń do rejestracji</span>
+              <strong>{clinic.phone}</strong>
+            </span>
+          </a>
+          <p className="confirmation">{clinic.hoursNote}</p>
         </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-14">
-        <h2 className="text-3xl font-bold sm:text-4xl">Załatw sprawę w jednej chwili</h2>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {quickLinks.map((item) => (
-            <div key={item.title} className="surface-card flex flex-col p-7">
-              <item.icon className="size-10 text-primary" aria-hidden="true" />
-              <h3 className="mt-4 text-2xl font-bold">{item.title}</h3>
-              <p className="mt-2 flex-1 text-muted-foreground">{item.text}</p>
-              <a href={item.action.href} className="btn-base btn-primary mt-6">
-                <Phone className="size-5" aria-hidden="true" /> {item.action.label}
-              </a>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-border bg-secondary">
-        <div className="mx-auto max-w-6xl px-4 py-14">
-          <h2 className="text-3xl font-bold sm:text-4xl">Czym się zajmujemy</h2>
-          <p className="mt-3 max-w-2xl text-xl text-muted-foreground">
-            Wszystko w jednym miejscu – od wizyty u lekarza rodzinnego po badania i rehabilitację.
-          </p>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <div key={s.title} className="surface-card p-7">
-                <s.icon className="size-9 text-accent" aria-hidden="true" />
-                <h3 className="mt-4 text-xl font-bold">{s.title}</h3>
-                <p className="mt-2 text-muted-foreground">{s.text}</p>
+        <div className="hours-layout">
+          <dl className="opening-hours">
+            {openingHours.map((item) => (
+              <div key={item.name}>
+                <dt>
+                  {item.name}
+                  <span>{item.days}</span>
+                </dt>
+                <dd>
+                  <strong>{item.time}</strong>
+                  {item.note && <small>{item.note}</small>}
+                </dd>
               </div>
             ))}
+          </dl>
+          <figure className="clinic-photo">
+            <img
+              src={heroImage}
+              alt="Siedziba przychodni ARSMEDICA przy ul. Babina 3 w Kaliszu"
+              width={800}
+              height={450}
+            />
+            <figcaption>ARSMEDICA CENTRUM, ul. Babina 3, Kalisz</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="lekarze" className="patient-section content-width">
+        <div className="section-title">
+          <h2>Kiedy przyjmuje lekarz?</h2>
+          <a className="text-link" href={`tel:${clinic.phoneHref}`}>
+            Umów wizytę telefonicznie
+          </a>
+        </div>
+        <DoctorSchedule />
+      </section>
+
+      <section id="laboratorium" className="laboratory-section">
+        <div className="content-width patient-section">
+          <h2>Laboratorium i pobranie krwi</h2>
+          <div className="lab-layout">
+            <div className="lab-times">
+              <h3>Pobranie krwi</h3>
+              <p className="large-time">7:30–11:00</p>
+              <p>Poniedziałek – piątek</p>
+              <h3>Wyniki</h3>
+              <p>{laboratory.results}</p>
+              <p className="confirmation">{laboratory.collection}</p>
+            </div>
+            <div className="lab-guide">
+              <h3>Jakie badania można wykonać?</h3>
+              <p>{laboratory.availability}</p>
+              <p className="confirmation">{laboratory.referral}</p>
+              <h3>Jak przygotować się do badania?</h3>
+              <p>{laboratory.preparation}</p>
+              <a href={`tel:${clinic.phoneHref}`} className="btn-base btn-accent">
+                Zapytaj o badanie: {clinic.phone}
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-2">
+      <section id="szczepienia" className="patient-section content-width">
+        <h2>Szczepienia</h2>
+        <p>
+          Przychodnia prowadzi szczepienia zalecane. Termin i szczepienie odpowiednie dla Ciebie lub
+          dziecka ustal w punkcie szczepień przez rejestrację.
+        </p>
+        <dl className="vaccination-list">
+          {vaccinations.map((item) => (
+            <div key={item.name}>
+              <dt>{item.name}</dt>
+              <dd>{item.vaccine}</dd>
+            </div>
+          ))}
+        </dl>
+        <div className="staff-note">
+          <h3>Kalendarz szczepień 2026</h3>
+          <p className="confirmation">{vaccinationNote}</p>
+        </div>
+        <a href={`tel:${clinic.phoneHref}`} className="btn-base btn-primary">
+          Umów szczepienie: {clinic.phone}
+        </a>
+      </section>
+
+      <section id="informacje" className="patient-section content-width">
+        <h2>Informacje i kontakt</h2>
+        <div className="information-layout">
+          <div>
+            <h3>Przychodnia przy Babina 3</h3>
+            <p>
+              {clinic.street}
+              <br />
+              {clinic.city}
+            </p>
+            <a href={`tel:${clinic.phoneHref}`} className="text-link">
+              Rejestracja: {clinic.phone}
+            </a>
+            <a href={`tel:${clinic.mobileHref}`} className="text-link">
+              Telefon komórkowy: {clinic.mobile}
+            </a>
+            <Link to="/kontakt" className="text-link">
+              Kontakt i wskazówki dojazdu
+            </Link>
+          </div>
+          <div className="information-links">
+            <Link to="/informacje" hash="recepty">
+              E-recepta na leki stałe
+            </Link>
+            <Link to="/informacje" hash="nfz">
+              POZ na NFZ i profilaktyka
+            </Link>
+            <Link to="/informacje" hash="dokumenty">
+              Prawa pacjenta i dokumenty
+            </Link>
+            <Link to="/informacje" hash="bezpieczenstwo">
+              Komunikaty o ochronie danych
+            </Link>
+          </div>
+        </div>
+        <aside className="after-hours">
+          <h3>Po godzinach i w dni świąteczne</h3>
+          <p>Wojewódzki Szpital Zespolony w Kaliszu, ul. Poznańska 79 (budynek Pogotowia).</p>
+          <a className="text-link" href={`tel:${clinic.afterHoursPhoneHref}`}>
+            {clinic.afterHoursPhone}
+          </a>
+        </aside>
+      </section>
+
+      <section className="clinic-introduction content-width">
         <img
           src={receptionImage}
-          alt="Rejestracja przychodni ARSMEDICA CENTRUM z nazwą placówki na szklanej przegrodzie"
+          alt="Rejestracja ARSMEDICA CENTRUM z nazwą przychodni na szklanej przegrodzie"
           loading="lazy"
           width={800}
           height={449}
-          className="w-full rounded-2xl border border-border object-cover shadow-card"
         />
         <div>
-          <h2 className="text-3xl font-bold sm:text-4xl">Programy profilaktyczne</h2>
-          <p className="mt-4 text-xl">
-            Zapraszamy do bezpłatnych programów realizowanych w naszej przychodni. Umożliwiają one
-            ocenę stanu zdrowia, identyfikację czynników ryzyka oraz wczesne wykrywanie chorób:
+          <h2>Opieka blisko domu</h2>
+          <p>
+            Lekarz rodzinny, internista i pediatra w ramach NFZ. W tej samej siedzibie: gabinet
+            zabiegowy, laboratorium i prywatne gabinety specjalistyczne.
           </p>
-          <ul className="mt-5 space-y-4 text-lg">
-            <li className="surface-card p-5">
-              <strong>Profilaktyka chorób układu krążenia (CHUK)</strong>
-            </li>
-            <li className="surface-card p-5">
-              <strong>„Moje Zdrowie” – bilans zdrowia osoby dorosłej</strong>
-            </li>
-          </ul>
-          <p className="mt-5 text-lg text-muted-foreground">
-            Nie czekaj na objawy – profilaktyka daje największe korzyści wtedy, gdy działamy
-            odpowiednio wcześnie. Zapytaj o udział w rejestracji lub u swojego lekarza.
-          </p>
-          <Link to="/informacje" className="btn-base btn-primary mt-6">
-            Sprawdź szczegóły
+          <Link to="/informacje" hash="profilaktyka" className="text-link">
+            Programy CHUK, „Moje Zdrowie” i opieka koordynowana
           </Link>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 pb-6">
-        <div className="surface-card flex flex-col items-center gap-4 bg-primary p-10 text-center text-primary-foreground">
-          <h2 className="text-3xl font-bold">Po godzinie 18:00 i w dni świąteczne</h2>
-          <p className="max-w-2xl text-xl">
-            Opiekę medyczną świadczy Wojewódzki Szpital Zespolony w Kaliszu, ul. Poznańska 79
-            (budynek Pogotowia), tel. 62 765 16 54. Nocną i świąteczną pomoc uzyskasz też przez
-            Teleplatformę Pierwszego Kontaktu (TPK): 800 137 200.
-          </p>
         </div>
       </section>
     </>

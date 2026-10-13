@@ -4,11 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * ArsMedica Centrum — design system.
- * The practice's real identity: white + red + a muted medical green + warm grey.
- * Large, readable type for senior patients on soft warm paper.
- */
+/* ARSMEDICA: existing red brand, white surfaces, supporting medical green. */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -17,8 +13,8 @@
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
-  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Merriweather", Georgia, serif;
+  --font-sans: Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-display: Arial, ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -44,76 +40,29 @@
 }
 
 :root {
-  --radius: 0.75rem;
-
-  /* Shared, theme-independent tokens. Text ink stays a near-neutral warm dark
-     so it reads cleanly on every off-white below; neutrals are kept genuinely
-     neutral so they never become an accidental second accent. */
-  --foreground: oklch(0.245 0.012 40);
+  --radius: 0.4rem;
+  --background: #ffffff;
+  --foreground: #24332e;
   --card: #ffffff;
-  --card-foreground: oklch(0.245 0.012 40);
+  --card-foreground: #24332e;
   --popover: #ffffff;
-  --popover-foreground: oklch(0.245 0.012 40);
+  --popover-foreground: #24332e;
+  --primary: #b3141f;
   --primary-foreground: #ffffff;
-  --secondary-foreground: oklch(0.3 0.02 40);
-  --muted: oklch(0.965 0.008 55);
-  --muted-foreground: oklch(0.455 0.014 45);
+  --primary-soft: #fbeef0;
+  --secondary: #edf3ef;
+  --secondary-foreground: #24332e;
+  --muted: #f4f6f5;
+  --muted-foreground: #526159;
+  --accent: #48685a;
   --accent-foreground: #ffffff;
-  --destructive: #b42318;
+  --destructive: #b3141f;
   --destructive-foreground: #ffffff;
-  --border: oklch(0.9 0.008 60);
-  --input: oklch(0.9 0.008 60);
-
-  /* Per-theme colour tokens. Default = "czerwien"; the :root[data-colorway="…"]
-     blocks below swap these six for each light theme. Every accent is a DEEPER
-     tone of its own primary — never a contrasting hue — so nothing clashes.
-     Backgrounds are subtly tinted off-whites (never pure white, never dirty). */
-  --background: #FBF7F6;
-  --secondary: #F6EEEC;
-  --primary: #B03A34;
-  --primary-soft: #F6E7E4;
-  --accent: #8C2C27;
-  --ring: #B03A34;
-
-  --shadow-card: 0 1px 2px oklch(0.28 0.02 30 / 0.06), 0 8px 24px -12px oklch(0.28 0.02 30 / 0.18);
-  --shadow-lift: 0 4px 8px oklch(0.28 0.02 30 / 0.08), 0 18px 40px -18px oklch(0.28 0.02 30 / 0.28);
-}
-
-/* =========================================================================
-   Light colourways — pick with the on-page colour picker (sets data-colorway).
-   Palettes grounded in real health-system brand colour (NHS, Mayo, HSE, Bupa
-   family); every primary passes WCAG AA on white; every accent is a deeper
-   shade of the SAME hue; every background is a distinct, subtle off-white.
-   ========================================================================= */
-:root[data-colorway="czerwien"] { /* calm clay red */
-  --background:#FBF7F6; --secondary:#F6EEEC; --primary:#B03A34; --primary-soft:#F6E7E4; --accent:#8C2C27; --ring:#B03A34;
-}
-:root[data-colorway="zielen"] { /* medical forest green */
-  --background:#F5FAF7; --secondary:#E9F3EC; --primary:#276749; --primary-soft:#E6F0EA; --accent:#1E4D36; --ring:#276749;
-}
-:root[data-colorway="blekit"] { /* clinical sky blue */
-  --background:#F5F9FC; --secondary:#E9F1F8; --primary:#0F6FB4; --primary-soft:#E4F0F8; --accent:#0A5590; --ring:#0F6FB4;
-}
-:root[data-colorway="granat"] { /* deep navy */
-  --background:#F5F8FB; --secondary:#E9EFF6; --primary:#1E3A5F; --primary-soft:#E7ECF3; --accent:#14284A; --ring:#1E3A5F;
-}
-:root[data-colorway="morski"] { /* sea teal */
-  --background:#F4FAFA; --secondary:#E5F2F2; --primary:#0F757B; --primary-soft:#E2F1F1; --accent:#0B5A5F; --ring:#0F757B;
-}
-:root[data-colorway="szmaragd"] { /* emerald */
-  --background:#F5FBF8; --secondary:#E7F4EE; --primary:#0F7A53; --primary-soft:#E4F3EC; --accent:#0A5A3F; --ring:#0F7A53;
-}
-:root[data-colorway="bordo"] { /* burgundy / wine */
-  --background:#FAF6F7; --secondary:#F3EAED; --primary:#7C2D3A; --primary-soft:#F2E6E9; --accent:#5C2029; --ring:#7C2D3A;
-}
-:root[data-colorway="grafit"] { /* graphite near-neutral */
-  --background:#F7F8F9; --secondary:#ECEEF1; --primary:#3A424B; --primary-soft:#ECEEF0; --accent:#262C32; --ring:#3A424B;
-}
-:root[data-colorway="stal"] { /* steel / slate blue */
-  --background:#F6F8FA; --secondary:#E9EEF3; --primary:#43607A; --primary-soft:#EAEFF3; --accent:#2F4759; --ring:#43607A;
-}
-:root[data-colorway="bursztyn"] { /* warm amber / ochre */
-  --background:#FBF7EF; --secondary:#F3ECDC; --primary:#966516; --primary-soft:#F7EDDC; --accent:#6E4A12; --ring:#966516;
+  --border: #ced9d2;
+  --input: #ced9d2;
+  --ring: #b3141f;
+  --shadow-card: none;
+  --shadow-lift: none;
 }
 
 @layer base {
@@ -123,6 +72,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 24px;
   }
 
   body {
@@ -149,9 +99,8 @@
 
 @utility surface-card {
   background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-card);
+  border-top: 2px solid var(--color-border);
+  border-radius: 0;
 }
 
 @utility btn-base {
@@ -163,7 +112,8 @@
   padding: 0.9rem 1.6rem;
   font-size: 1.125rem;
   font-weight: 600;
-  transition: all 0.18s ease;
+  min-height: 48px;
+  transition: background-color 0.18s ease;
 }
 
 @utility btn-primary {
@@ -191,4 +141,493 @@
   &:hover {
     background: var(--color-primary-soft);
   }
+}
+
+.content-width {
+  width: min(1152px, calc(100% - 32px));
+  margin-inline: auto;
+}
+.site-header {
+  background: white;
+  border-top: 6px solid var(--primary);
+  border-bottom: 2px solid var(--border);
+}
+.header-inner {
+  width: min(1152px, calc(100% - 32px));
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+}
+.clinic-brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 48px;
+  text-decoration: none;
+}
+.clinic-brand strong {
+  display: block;
+  color: var(--primary);
+  font-size: 24px;
+  line-height: 1.2;
+}
+.clinic-brand span span {
+  display: block;
+  font-size: 18px;
+  color: var(--muted-foreground);
+}
+.brand-symbol {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-radius: 6px;
+  font-size: 28px;
+  font-weight: 700;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.preview-label {
+  color: var(--muted-foreground);
+  font-size: 18px;
+}
+.task-nav {
+  width: min(1152px, calc(100% - 32px));
+  margin: auto;
+  display: flex;
+}
+.task-nav a {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 10px 24px;
+  font-size: 19px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--primary);
+}
+.task-nav a:first-child {
+  padding-left: 0;
+}
+.task-nav a:hover,
+.information-links a:hover {
+  background: var(--primary-soft);
+  text-decoration: underline;
+}
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: 8px;
+  padding: 12px;
+  background: white;
+  z-index: 100;
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: none;
+}
+.hours-section {
+  padding-block: 28px 0;
+}
+.registration-panel {
+  padding: 24px 28px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px 32px;
+}
+.registration-panel h1 {
+  font-size: 28px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.today-hours {
+  display: block;
+  font-size: 22px;
+  line-height: 1.3;
+}
+.regular-hours {
+  display: block;
+  font-size: 18px;
+}
+.registration-phone {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 60px;
+  text-decoration: none;
+}
+.registration-phone svg {
+  width: 28px;
+  height: 28px;
+}
+.registration-phone span span {
+  display: block;
+  font-size: 18px;
+}
+.registration-phone strong {
+  display: block;
+  font-size: 32px;
+  line-height: 1.2;
+}
+.registration-phone:hover {
+  text-decoration: underline;
+}
+.confirmation {
+  color: var(--muted-foreground);
+  font-size: 18px;
+  line-height: 1.5;
+}
+.registration-panel .confirmation {
+  grid-column: 1 / -1;
+  color: white;
+}
+.hours-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 36px;
+  padding-top: 28px;
+  align-items: start;
+}
+.opening-hours > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 2px solid var(--border);
+}
+.opening-hours dt {
+  font-weight: 700;
+}
+.opening-hours dt span {
+  display: block;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--muted-foreground);
+}
+.opening-hours dd strong {
+  font-size: 24px;
+  color: var(--primary);
+}
+.opening-hours small {
+  display: block;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+.clinic-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.clinic-photo figcaption {
+  font-size: 18px;
+  color: var(--muted-foreground);
+  padding-top: 8px;
+}
+.patient-section {
+  padding-block: 48px;
+}
+.patient-section h2,
+.clinic-introduction h2 {
+  font-size: 34px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.patient-section h3 {
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+.patient-section p {
+  max-width: 72ch;
+  margin-bottom: 16px;
+}
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+}
+.text-link {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.doctor-list {
+  margin-block: 24px 16px;
+  border-top: 2px solid var(--border);
+}
+.doctor-list details {
+  border-bottom: 2px solid var(--border);
+}
+.doctor-list summary {
+  cursor: pointer;
+  padding: 18px 12px;
+  min-height: 64px;
+}
+.doctor-list summary strong {
+  margin-inline: 8px 20px;
+}
+.doctor-list summary span {
+  color: var(--muted-foreground);
+}
+.doctor-list details[open] {
+  background: var(--muted);
+}
+.schedule {
+  padding: 0 28px 20px;
+}
+.schedule div {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  padding-block: 8px;
+  gap: 16px;
+}
+.schedule dt {
+  text-transform: capitalize;
+  font-weight: 700;
+}
+.staff-note {
+  padding: 20px 24px;
+  border-left: 5px solid var(--accent);
+  background: var(--secondary);
+  margin-block: 24px;
+}
+.staff-note a {
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  text-decoration: underline;
+}
+.laboratory-section {
+  background: var(--secondary);
+}
+.lab-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  gap: 48px;
+}
+.lab-times {
+  border-left: 5px solid var(--accent);
+  padding-left: 24px;
+}
+.lab-times .large-time {
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.lab-times h3:not(:first-child),
+.lab-guide h3:not(:first-child) {
+  margin-top: 28px;
+}
+.vaccination-list {
+  margin-block: 24px;
+}
+.vaccination-list > div {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 18px 0;
+  gap: 24px;
+  border-bottom: 2px solid var(--border);
+}
+.vaccination-list dt {
+  font-weight: 700;
+}
+.information-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.information-layout .text-link {
+  display: flex;
+}
+.information-links a {
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  padding: 12px 0;
+  color: var(--primary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--border);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.after-hours {
+  margin-top: 32px;
+  padding: 24px;
+  background: var(--muted);
+  border-radius: 6px;
+}
+.clinic-introduction {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 36px;
+  padding-block: 24px 48px;
+}
+.clinic-introduction img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.specialist-list {
+  margin-top: 32px;
+}
+.specialist-list article {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 8px 32px;
+  border-bottom: 2px solid var(--border);
+  padding: 24px 0;
+}
+.specialist-list h2 {
+  font-size: 24px;
+  color: var(--primary);
+  font-weight: 700;
+}
+.specialist-list .confirmation {
+  grid-column: 1 / -1;
+}
+.source-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: inherit;
+}
+.site-footer a {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+}
+@media (max-width: 700px) {
+  .header-inner {
+    padding-block: 12px;
+  }
+  .clinic-brand strong {
+    font-size: 20px;
+  }
+  .brand-symbol,
+  .preview-label {
+    display: none;
+  }
+  .task-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-bottom: 8px;
+  }
+  .task-nav a,
+  .task-nav a:first-child {
+    min-height: 48px;
+    padding: 6px 8px;
+    font-size: 18px;
+  }
+  .task-nav a:last-child {
+    grid-column: 1 / -1;
+  }
+  .hours-section {
+    padding-top: 16px;
+  }
+  .registration-panel {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 12px;
+  }
+  .registration-panel h1 {
+    font-size: 24px;
+  }
+  .today-hours {
+    font-size: 21px;
+  }
+  .registration-phone strong {
+    font-size: 30px;
+  }
+  .registration-panel .confirmation {
+    grid-column: auto;
+  }
+  .hours-layout,
+  .lab-layout,
+  .information-layout,
+  .clinic-introduction {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .opening-hours > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .patient-section {
+    padding-block: 36px;
+  }
+  .patient-section h2,
+  .clinic-introduction h2 {
+    font-size: 29px;
+  }
+  .section-title {
+    display: block;
+  }
+  .doctor-list summary span {
+    display: block;
+    margin-left: 25px;
+  }
+  .schedule {
+    padding-inline: 12px;
+  }
+  .schedule div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .vaccination-list > div,
+  .specialist-list article {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .specialist-list .confirmation {
+    grid-column: auto;
+  }
+  .btn-base {
+    padding-inline: 16px;
+    text-align: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.source-details {
+  border-bottom: 2px solid var(--border);
+  padding: 12px 0;
+}
+.source-details summary {
+  min-height: 48px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.source-notice {
+  padding: 20px 0;
+  max-width: 75ch;
+}
+.source-notice h3 {
+  margin-block: 24px 12px;
 }

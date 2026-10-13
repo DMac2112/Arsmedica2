@@ -10,6 +10,10 @@ export const clinic = {
   specialistPhone: "500 308 305",
   specialistPhoneHref: "+48500308305",
   hours: "poniedziałek – piątek, 8:00 – 18:00",
+  hoursNote:
+    "do potwierdzenia: oferta POZ podaje 8:00–18:00, stopka 7:30–18:00. Osobnych godzin rejestracji nie opublikowano.",
+  afterHoursPhone: "62 765 16 54",
+  afterHoursPhoneHref: "+48627651654",
 };
 
 export const pozDoctors = [
@@ -86,7 +90,12 @@ export const specialists = [
     phone: "500 308 305",
   },
   { field: "Neurolog", name: "dr n. med. Karolina Tworek", when: "", phone: "500 308 305" },
-  { field: "Kardiolog", name: "lek. Agata Serwecińska", when: "poniedziałki", phone: "500 308 305" },
+  {
+    field: "Kardiolog",
+    name: "lek. Agata Serwecińska",
+    when: "poniedziałki",
+    phone: "500 308 305",
+  },
   {
     field: "Lekarz medycyny pracy i transportu",
     name: "lek. Piotr Lisowski",
@@ -105,6 +114,7 @@ export const specialists = [
     name: "dr n. med. Jarosław Kasperczak",
     when: "poniedziałek i czwartek od 16:00",
     phone: "607 051 894",
+    note: "do potwierdzenia: strona główna podaje poniedziałek i czwartek, „O nas” poniedziałek i piątek.",
   },
   {
     field: "Fizjoterapia uroginekologiczna i urologiczna",
@@ -117,6 +127,7 @@ export const specialists = [
     name: "Gohar Meliksetyan",
     when: "poniedziałek – piątek od 12:00",
     phone: "880 683 065",
+    note: "do potwierdzenia: strona główna podaje ten numer; „O nas” podaje 500 308 305.",
   },
   {
     field: "Poradnia psychologii pracy",
@@ -125,5 +136,73 @@ export const specialists = [
     phone: "503 114 595",
   },
   { field: "Psycholog", name: "mgr Justyna Prus-Buczak", when: "", phone: "601 775 701" },
-  { field: "Dietetyk", name: "Wiktoria Szczęsna", when: "", phone: "722 398 007" },
+  {
+    field: "Dietetyk",
+    name: "Julia Dobosz",
+    when: "",
+    phone: "791 755 792",
+    note: "do potwierdzenia: „O nas” podaje Julię Dobosz, strona główna Wiktorię Szczęsną; telefon jest ten sam.",
+  },
 ];
+
+// Źródła: audit/pages/oferta-poz.md, laboratorium.md, kalendarz-szczepien.md.
+export const openingHours = [
+  {
+    name: "Rejestracja i POZ",
+    days: "poniedziałek – piątek",
+    time: "8:00–18:00",
+    note: clinic.hoursNote,
+  },
+  {
+    name: "Gabinet zabiegowy",
+    days: "poniedziałek – piątek",
+    time: "8:00–18:00",
+    note: "do potwierdzenia: oferta POZ mówi o godzinach pracy przychodni; stopka podaje 7:30–18:00.",
+  },
+  { name: "Pobranie krwi", days: "poniedziałek – piątek", time: "7:30–11:00", note: "" },
+  {
+    name: "Odbiór wyników",
+    days: "następnego dnia",
+    time: "od 14:00",
+    note: "do potwierdzenia: terminy po piątku i świętach oraz sposób odbioru nie są opisane.",
+  },
+  {
+    name: "Rejestracja do specjalistów",
+    days: "poniedziałek – piątek",
+    time: "8:00–16:00",
+    note: "",
+  },
+];
+
+export const laboratory = {
+  hours: "Poniedziałek – piątek, 7:30–11:00",
+  results: "Odbiór wyników następnego dnia od 14:00.",
+  availability:
+    "W przychodni można wykonać badania płatne. Lista badań i ceny nie są opublikowane.",
+  referral:
+    "do potwierdzenia: zakres badań na NFZ i wymagane skierowanie. Zapytaj lekarza POZ, które badania może zlecić.",
+  preparation:
+    "do potwierdzenia: przygotowanie zależy od badania. Przed pobraniem zapytaj, czy trzeba być na czczo i jak przygotować się do konkretnego badania.",
+  collection:
+    "do potwierdzenia: sposób odbioru wyników, czas oczekiwania na poszczególne badania i terminy po weekendach lub świętach.",
+};
+
+export const vaccinations = [
+  {
+    name: "Wirusowe zapalenie wątroby",
+    vaccine: "Euvax — źródło opisuje pełny cykl jako 3 dawki.",
+  },
+  { name: "Pneumokoki", vaccine: "Prevenar" },
+  { name: "Rotawirusy", vaccine: "Rotarix" },
+  {
+    name: "Szczepienie skojarzone",
+    vaccine: "Infanrix IPV+Hib — do potwierdzenia: dokładny zakres szczepienia opisanego w źródle.",
+  },
+  {
+    name: "Krztusiec",
+    vaccine:
+      "Informacja przychodni dotyczy osób mających kontakt z niemowlętami, kobiet w ciąży lub planujących ciążę oraz dawek przypominających u dorosłych.",
+  },
+];
+export const vaccinationNote =
+  "do potwierdzenia: aktualna dostępność, wiek pacjenta, kwalifikacja i finansowanie. Kalendarz w treści strony jest na 2026 r., ale tytuł strony nadal podaje 2025 r. Szczegóły ustal w punkcie szczepień.";

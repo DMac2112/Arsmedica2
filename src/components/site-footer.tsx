@@ -4,7 +4,7 @@ import { clinic } from "@/data/clinic";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-20 border-t border-border bg-secondary">
+    <footer className="site-footer mt-12 border-t-2 border-border bg-secondary">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-3">
         <div>
           <h2 className="font-display text-xl font-bold text-primary">{clinic.name}</h2>
@@ -23,13 +23,19 @@ export function SiteFooter() {
           <h2 className="font-display text-xl font-bold">Kontakt</h2>
           <p className="mt-4 flex items-center gap-3">
             <Phone className="size-5 text-primary" aria-hidden="true" />
-            <a className="font-semibold underline-offset-4 hover:underline" href={`tel:${clinic.phoneHref}`}>
+            <a
+              className="font-semibold underline-offset-4 hover:underline"
+              href={`tel:${clinic.phoneHref}`}
+            >
               {clinic.phone}
             </a>
           </p>
           <p className="mt-2 flex items-center gap-3">
             <Phone className="size-5 text-primary" aria-hidden="true" />
-            <a className="font-semibold underline-offset-4 hover:underline" href={`tel:${clinic.mobileHref}`}>
+            <a
+              className="font-semibold underline-offset-4 hover:underline"
+              href={`tel:${clinic.mobileHref}`}
+            >
               {clinic.mobile}
             </a>
           </p>
@@ -54,7 +60,7 @@ export function SiteFooter() {
             </li>
             <li>
               <Link to="/informacje" className="underline-offset-4 hover:underline">
-                Profilaktyka, laboratorium, szczepienia
+                Informacje i dokumenty pacjenta
               </Link>
             </li>
             <li>
@@ -67,7 +73,8 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-border py-6 text-center text-base text-muted-foreground">
-        © {new Date().getFullYear()} ArsMedica Centrum, Kalisz. Wszelkie prawa zastrzeżone.
+        Podgląd strony ARSMEDICA CENTRUM. Informacje oznaczone „do potwierdzenia” wymagają
+        weryfikacji w przychodni.
       </div>
     </footer>
   );
