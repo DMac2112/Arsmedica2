@@ -62,11 +62,13 @@ function Home() {
           <a href={`tel:${clinic.phoneHref}`} className="registration-phone">
             <Phone aria-hidden="true" />
             <span>
-              <span>Zadzwoń do rejestracji</span>
-              <strong>{clinic.phone}</strong>
+              Rejestracja: <strong>{clinic.phone}</strong>
             </span>
           </a>
-          <p className="confirmation">{clinic.hoursNote}</p>
+          <p className="confirmation">
+            <span>Rozbieżne godziny POZ.</span>
+            <small title={clinic.hoursNote}>do potwierdzenia</small>
+          </p>
         </div>
         <div className="hours-layout">
           <dl className="opening-hours">
