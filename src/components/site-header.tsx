@@ -1,12 +1,25 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation, useRouter } from "@tanstack/react-router";
 import { clinic } from "@/data/clinic";
 
 export function SiteHeader() {
+  const { pathname } = useLocation();
+  const { basepath = "/" } = useRouter().options;
+  const routePath = pathname.slice(basepath.replace(/\/$/, "").length);
+  const depth = routePath.split("/").filter(Boolean).length;
+  // A trailing slash adds a directory level when resolving a relative URL.
+  const parentLevels = depth + (pathname.endsWith("/") ? 1 : 0);
+  const showcaseHref = parentLevels ? "../".repeat(parentLevels) : "./";
+
   return (
     <header className="site-header">
       <a className="skip-link" href="#main">
         Przejdź do treści
       </a>
+      <div className="content-width showcase-return">
+        <a className="showcase-link" href={showcaseHref}>
+          ← Wszystkie wersje Arsmedica
+        </a>
+      </div>
       <div className="header-inner">
         <Link to="/" className="clinic-brand">
           <span className="brand-symbol" aria-hidden="true">

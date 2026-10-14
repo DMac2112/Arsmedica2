@@ -152,6 +152,23 @@
   border-top: 6px solid var(--primary);
   border-bottom: 2px solid var(--border);
 }
+.showcase-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+  text-decoration: none;
+}
+.showcase-link:hover {
+  text-decoration: underline;
+}
+@media print {
+  .showcase-return {
+    display: none;
+  }
+}
 .header-inner {
   width: min(1152px, calc(100% - 32px));
   margin: auto;
